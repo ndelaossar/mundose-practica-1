@@ -1,0 +1,20 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  REGISTRY: pinoched
+  VERSION: $(git rev-parse --short "$GITHUB_SHA")
+
+jobs:
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image Frontend
+      run: |
+        docker build . --file ./src/app/Dockerfile --tag frontend:$VERSION
+        docker images
+      
