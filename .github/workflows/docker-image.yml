@@ -24,11 +24,11 @@ jobs:
       run: |
         VERSION=$(git rev-parse --short "$GITHUB_SHA")
         docker build . --file ./src/app/Dockerfile -t $REGISTRY/frontend:$VERSION -t $REGISTRY/frontend:latest
-        docker push $REGISTRY/frontend:$VERSION
+        docker push $REGISTRY/frontend:$VERSION --all-tags
 
     - name: Build the Docker Image Consumer
       run: |
         VERSION=$(git rev-parse --short "$GITHUB_SHA")
-        docker build . --file ./src/consumer/Dockerfile -r $REGISTRY/consumer:$VERSION -t $REGISTRY/consumer:latest
+        docker build . --file ./src/consumer/Dockerfile -t $REGISTRY/consumer:$VERSION -t $REGISTRY/consumer:latest
         docker push $REGISTRY/consumer:$VERSION
       
