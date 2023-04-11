@@ -29,6 +29,6 @@ jobs:
     - name: Build the Docker Image Consumer
       run: |
         VERSION=$(git rev-parse --short "$GITHUB_SHA")
-        docker build . --file ./src/consumer/Dockerfile -r $REGISTRY/consumer:$VERSION -t $REGISTRY/frontend:latest
+        docker build . --file ./src/consumer/Dockerfile -r $REGISTRY/consumer:$VERSION -t $REGISTRY/consumer:latest
         docker push $REGISTRY/consumer:$VERSION
       
